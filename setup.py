@@ -14,7 +14,7 @@ from setuptools import setup
 
 setup(
     name="aioswaggerpy",
-    version="0.2.1",
+    version="0.0.1",
     license="BSD 3-Clause License",
     description="Asynchronous library for accessing Swagger-enabled API's",
     long_description=open(os.path.join(os.path.dirname(__file__),
