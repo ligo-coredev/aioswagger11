@@ -1,3 +1,9 @@
+Asynchronous clone of https://github.com/digium/swagger-py
+
+Uses aiohttp for http connections
+
+
+
 About
 -----
 
@@ -144,6 +150,7 @@ License
 -------
 
 Copyright (c) 2013, Digium, Inc. All rights reserved.
+
 Copyright (c) 2016, Denis Fokin. All rights reserved.
 
 Swagger.py is licensed with a `BSD 3-Clause
