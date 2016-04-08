@@ -114,17 +114,18 @@ class AsynchronousHttpClient(HttpClient):
         self.session = aiohttp.ClientSession(loop=loop, auth=self.authenticator)
 
     async def close(self):
+        for websocket in self.websockets:
+            await websocket.close()
         await self.session.close()
-        # There's no WebSocket factory to close; close connections individually
 
     async def request(self, method, url, params=None, data=None, headers=None):
         """Requests based implementation.
         :return: aiohttp response
         :rtype:  aiohttp.ClientResponse
         """
-        ret = await self.session.request(
+        response = await self.session.request(
             method=method, url=url, params=params, data=data, headers=headers)
-        return ret
+        return response
 
     async def ws_connect(self, url, params=None):
         """Websocket-client based implementation.
@@ -136,4 +137,5 @@ class AsynchronousHttpClient(HttpClient):
                                       for (k, v) in params.items()])
             url += "?%s" % joined_params
         ret = await self.session.ws_connect(url)
+        self.websockets.add(ret)
         return ret

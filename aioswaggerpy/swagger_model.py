@@ -120,8 +120,8 @@ async def async_json_load_url(http_client, url):
     else:
         resp = await http_client.request('GET', url)
         text = await resp.text()
-        resp = json.loads(text)
-        return resp
+        jsons = json.loads(text)
+        return jsons
 
 class AsyncLoader(object):
     """Abstraction for loading Swagger API's.
@@ -140,12 +140,12 @@ class AsyncLoader(object):
         # noinspection PyTypeChecker
         self.processors = [ValidationProcessor()] + processors
 
-    async def load_resource_listing(self, resources_url, base_url=None):
+    async def async_load_resource_listing(self, resources_url, base_url=None):
         """Load a resource listing, loading referenced API declarations.
 
         The following fields are added to the resource listing object model.
          * ['url'] = URL resource listing was loaded from
-         * The ['apis'] array is modified according to load_api_declaration()
+         * The ['apis'] array is modified according to async_load_api_declaration()
 
         The Loader's processors are applied to the fully loaded resource
         listing.
@@ -166,13 +166,13 @@ class AsyncLoader(object):
 
         # Load the API declarations
         for api in resource_listing.get('apis'):
-            await self.load_api_declaration(base_url, api)
+            await self.async_load_api_declaration(base_url, api)
 
         # Now that the raw object model has been loaded, apply the processors
         self.process_resource_listing(resource_listing)
         return resource_listing
 
-    async def load_api_declaration(self, base_url, api_dict):
+    async def async_load_api_declaration(self, base_url, api_dict):
         """Load an API declaration file.
 
         api_dict is modified with the results of the load:
@@ -249,9 +249,10 @@ async def async_load_url(resource_listing_url, http_client=None, processors=None
         http_client = AsynchronousHttpClient()
 
     loader = AsyncLoader(http_client=http_client, processors=processors)
-    resp = await loader.load_resource_listing(
+    resp = await loader.async_load_resource_listing(
         resource_listing_url, base_url=base_url)
     return resp
+
 
 def async_load_json(resource_listing, http_client=None, processors=None):
     """Process a resource listing that has already been parsed.
