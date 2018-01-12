@@ -202,10 +202,10 @@ class AsyncSwaggerClient(object):
         self.loader = aioswaggerpy.AsyncLoader(
             self.http_client, [WebsocketProcessor(), ClientProcessor()])
 
-    async def async_init(self):
+    async def init(self):
         if isinstance(self.url, str):
             log.debug("Loading from %s" % self.url)
-            self.api_docs = await self.loader.async_load_resource_listing(self.url)
+            self.api_docs = await self.loader.load_resource_listing(self.url)
         else:
             log.debug("Loading from %s" % self.url.get('basePath'))
             self.api_docs = self.url
@@ -228,7 +228,7 @@ class AsyncSwaggerClient(object):
             raise AttributeError("API has no resource '%s'" % item)
         return resource
 
-    async def async_close(self):
+    async def close(self):
         """Close the SwaggerClient, and underlying resources.
         """
         await self.http_client.close()

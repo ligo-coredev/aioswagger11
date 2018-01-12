@@ -23,6 +23,6 @@ async def listen_ws():
 
 ari = AsyncSwaggerClient(None, None, loop=loop, http_client=http_client,
                          url="http://192.168.254.60:8088/ari/api-docs/resources.json")
-loop.run_until_complete(ari.async_init())
+loop.run_until_complete(ari.init())
 loop.run_until_complete(listen_ws())
-ari.async_close()
+loop.run_until_complete(ari.close())
