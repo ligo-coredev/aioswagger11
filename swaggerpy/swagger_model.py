@@ -10,8 +10,8 @@ import json
 import os
 import urllib
 
-from aioswaggerpy.http_client import AsynchronousHttpClient
-from aioswaggerpy.processors import SwaggerProcessor, SwaggerError
+from swaggerpy.http_client import AsynchronousHttpClient
+from swaggerpy.processors import SwaggerProcessor, SwaggerError
 
 SWAGGER_VERSIONS = ["1.1", "1.2"]
 

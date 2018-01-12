@@ -4,7 +4,7 @@ import base64
 import unittest
 import httpretty
 
-from aioswaggerpy.http_client import SynchronousHttpClient
+from swaggerpy.http_client import SynchronousHttpClient
 
 
 # noinspection PyDocstring

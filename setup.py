@@ -13,7 +13,7 @@ import os
 from setuptools import setup
 
 setup(
-    name="aioswaggerpy",
+    name="swaggerpy",
     version="0.0.1",
     license="BSD 3-Clause License",
     description="Asynchronous library for accessing Swagger-enabled API's",
@@ -21,8 +21,8 @@ setup(
                                        "README.rst")).read(),
     author="Denis Fokin",
     author_email="fokin.denis@gmail.com",
-    url="https://github.com/dfokin/aioswagger-py",
-    packages=["aioswaggerpy"],
+    url="https://github.com/dfokin/swagger-py",
+    packages=["swaggerpy"],
     classifiers=[
         "Development Status :: 1 - Planning",
         "Intended Audience :: Developers",
@@ -35,6 +35,6 @@ setup(
     install_requires=["requests", "websocket-client"],
     entry_points="""
     [console_scripts]
-    swagger-codegen = aioswaggerpy.codegen:main
+    swagger-codegen = swaggerpy.codegen:main
     """
 )

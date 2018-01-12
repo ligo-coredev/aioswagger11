@@ -2,8 +2,8 @@ import json
 import asyncio
 import aiohttp
 
-from aioswaggerpy.client import AsyncSwaggerClient
-from aioswaggerpy.http_client import AsynchronousHttpClient
+from swaggerpy.client import AsyncSwaggerClient
+from swaggerpy.http_client import AsynchronousHttpClient
 
 loop = asyncio.get_event_loop()
 http_client = AsynchronousHttpClient('remari', '@rip@$$', loop)

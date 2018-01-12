@@ -12,11 +12,11 @@ import logging
 import os.path
 import re
 import urllib
-import aioswaggerpy
+import swaggerpy
 import asyncio
 
-from aioswaggerpy.http_client import AsynchronousHttpClient
-from aioswaggerpy.processors import WebsocketProcessor, SwaggerProcessor
+from swaggerpy.http_client import AsynchronousHttpClient
+from swaggerpy.processors import WebsocketProcessor, SwaggerProcessor
 
 log = logging.getLogger(__name__)
 
@@ -199,7 +199,7 @@ class AsyncSwaggerClient(object):
             http_client = AsynchronousHttpClient(username, password, self.loop)
         self.http_client = http_client
         self.url = url
-        self.loader = aioswaggerpy.AsyncLoader(
+        self.loader = swaggerpy.AsyncLoader(
             self.http_client, [WebsocketProcessor(), ClientProcessor()])
 
     async def init(self):

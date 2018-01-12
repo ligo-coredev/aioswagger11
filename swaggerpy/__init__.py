@@ -11,5 +11,5 @@ More information on Swagger can be found `on the Swagger website
 
 __all__ = ["client", "codegen", "processors", "swagger_model"]
 
-from aioswaggerpy.swagger_model import load_file, load_json, load_url, AsyncLoader
-from aioswaggerpy.processors import SwaggerProcessor, SwaggerError
+from swaggerpy.swagger_model import load_file, load_json, load_url, AsyncLoader
+from swaggerpy.processors import SwaggerProcessor, SwaggerError
