@@ -68,8 +68,9 @@ class Operation(object):
             pname = param['name']
             value = kwargs.get(pname)
             # Turn list params into comma separated values
-            if isinstance(value, list):
-                value = ",".join(value)
+            if param['paramType'] != 'body':
+                if isinstance(value, list):
+                    value = ",".join(value)
 
             if value is not None:
                 if param['paramType'] == 'path':
